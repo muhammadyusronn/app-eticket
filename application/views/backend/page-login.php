@@ -93,7 +93,8 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-center mt-4">
-                                        <a href="index.html" class="btn btn-lg btn-block btn-light lift text-uppercase" atl="signin">SIGN
+                                        <a href="<?= base_url('dash') ?>" class="btn btn-lg btn-block btn-light lift text-uppercase"
+                                            atl="signin">SIGN
                                             IN</a>
                                     </div>
                                     <div class="col-12 text-center mt-4">

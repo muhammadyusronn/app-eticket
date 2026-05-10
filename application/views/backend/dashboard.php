@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="card light-danger-bg">
           <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-            <h6 class="mb-0 fw-bold ">Top Perfrormers</h6>
+            <h6 class="mb-0 fw-bold ">Top Perfrormers 2026</h6>
           </div>
           <div class="card-body">
             <div class="row g-3 align-items-center">
@@ -100,7 +100,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-            <h6 class="mb-0 fw-bold ">Ticket Statistics</h6>
+            <h6 class="mb-0 fw-bold ">Ticket Statistics 2026</h6>
           </div>
           <div class="card-body">
             <div class="ac-line-transparent" id="apex-ticketStatistics"></div>
