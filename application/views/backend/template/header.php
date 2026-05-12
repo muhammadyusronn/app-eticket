@@ -38,9 +38,9 @@
         <ul class="menu-list flex-grow-1 mt-3">
           <li><a class="m-link" href="<?= base_url('dash'); ?>"><i class="icofont-home fs-5"></i>
               <span>Dashboard</span></a></li>
-          <li><a class="m-link" onclick="return alert('sabarrrrrr')"><i class="icofont-light-bulb fs-5"></i>
+          <li><a class="m-link" href="<?= base_url('knowledgebase'); ?>"><i class="icofont-light-bulb fs-5"></i>
               <span>Knowledge Base</span></a></li>
-          <li><a class="m-link" onclick="return alert('sabarrrrrr')"><i class="icofont-paper-plane fs-5"></i>
+          <li><a class="m-link" href="<?= base_url('create-ticket'); ?>"><i class="icofont-paper-plane fs-5"></i>
               <span>Create Tickets</span></a></li>
           <li class="collapsed">
             <a class="m-link" data-bs-toggle="collapse" data-bs-target="#tikit-Components" href="#"><i
