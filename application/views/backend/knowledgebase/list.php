@@ -8,11 +8,13 @@
         <!-- Icon -->
         <div class="kb-hero-icon mx-auto mb-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+            <path
+              d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
           </svg>
         </div>
         <h2 class="fw-bold mb-2">Knowledge Base</h2>
-        <p class="text-muted mb-4">Silakan cari solusi untuk masalah Anda di Knowledge Base kami sebelum membuat tiket baru. Sebagian besar masalah umum telah didokumentasikan.</p>
+        <p class="text-muted mb-4">Silakan cari solusi untuk masalah Anda di Knowledge Base kami sebelum membuat tiket
+          baru. Sebagian besar masalah umum telah didokumentasikan.</p>
 
         <!-- Search Bar -->
         <div class="kb-search-wrapper mx-auto mb-3">
@@ -60,7 +62,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Gagal Sinkronisasi Data Pegawai pada Aplikasi...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Langkah-langkah penyelesaian jika aplikasi SIKEP tidak dapat menarik data terbaru dari server...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Langkah-langkah penyelesaian jika aplikasi SIKEP
+              tidak dapat menarik data terbaru dari server...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -79,7 +82,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Error 500 Saat Mengunggah Dokumen...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Panduan mengatasi error internal server saat upload PDF. Solusi utama melibatkan pengecekan...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Panduan mengatasi error internal server saat
+              upload PDF. Solusi utama melibatkan pengecekan...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -98,7 +102,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Database SIPP Terkunci (Locked) Saat Delegasi...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Cara aman melepaskan lock pada tabel database SIPP ketika proses pencatatan delegasi terputus...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Cara aman melepaskan lock pada tabel database
+              SIPP ketika proses pencatatan delegasi terputus...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -117,7 +122,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Koneksi VPN Tidak Stabil Saat Akses Aplikasi...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Panduan troubleshooting koneksi VPN yang intermittent saat mengakses aplikasi internal Badilag...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Panduan troubleshooting koneksi VPN yang
+              intermittent saat mengakses aplikasi internal Badilag...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -136,7 +142,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Data Mutasi Pegawai Tidak Muncul di SIKEP...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Langkah pelaporan jika data mutasi yang sudah diinput tidak tampil di dashboard SIKEP...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Langkah pelaporan jika data mutasi yang sudah
+              diinput tidak tampil di dashboard SIKEP...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -155,7 +162,8 @@
               </span>
             </div>
             <h6 class="fw-bold mb-2 kb-article-title">Gagal Login E-Court Setelah Reset Password...</h6>
-            <p class="text-muted small flex-grow-1 kb-article-excerpt">Solusi ketika pengguna tidak bisa login ke E-Court meskipun sudah melakukan reset password melalui admin...</p>
+            <p class="text-muted small flex-grow-1 kb-article-excerpt">Solusi ketika pengguna tidak bisa login ke
+              E-Court meskipun sudah melakukan reset password melalui admin...</p>
             <a href="javascript:void(0);" class="kb-read-more text-primary fw-bold small text-decoration-none">
               Baca Solusi Lengkap <i class="icofont-arrow-right ms-1"></i>
             </a>
@@ -181,13 +189,15 @@
             <div class="d-flex align-items-center flex-column flex-md-row">
               <div class="kb-cta-icon me-md-4 mb-3 mb-md-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
                 </svg>
               </div>
               <div class="flex-grow-1">
                 <h5 class="fw-bold mb-1">Solusi tidak ditemukan?</h5>
-                <p class="text-muted mb-0 small">Jika Anda sudah mencari dan tidak menemukan dokumentasi yang sesuai dengan masalah Anda, silakan lanjutkan untuk membuat tiket dukungan baru kepada tim IT.</p>
+                <p class="text-muted mb-0 small">Jika Anda sudah mencari dan tidak menemukan dokumentasi yang sesuai
+                  dengan masalah Anda, silakan lanjutkan untuk membuat tiket dukungan baru kepada tim IT.</p>
               </div>
               <div class="ms-md-4 mt-3 mt-md-0">
                 <a href="javascript:void(0);" class="btn btn-outline-dark px-4 py-2 fw-bold kb-create-ticket-btn">
@@ -393,18 +403,36 @@
     animation: fadeInUp 0.4s ease forwards;
   }
 
-  .kb-article-item:nth-child(1) { animation-delay: 0.05s; }
-  .kb-article-item:nth-child(2) { animation-delay: 0.1s; }
-  .kb-article-item:nth-child(3) { animation-delay: 0.15s; }
-  .kb-article-item:nth-child(4) { animation-delay: 0.2s; }
-  .kb-article-item:nth-child(5) { animation-delay: 0.25s; }
-  .kb-article-item:nth-child(6) { animation-delay: 0.3s; }
+  .kb-article-item:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .kb-article-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .kb-article-item:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  .kb-article-item:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+
+  .kb-article-item:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+
+  .kb-article-item:nth-child(6) {
+    animation-delay: 0.3s;
+  }
 
   @keyframes fadeInUp {
     from {
       opacity: 0;
       transform: translateY(16px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -460,121 +488,90 @@
 
 <!-- Knowledge Base JavaScript -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById('kb-search-input');
-  const searchBtn = document.getElementById('kb-search-btn');
-  const tagBtns = document.querySelectorAll('.kb-tag-btn');
-  const articles = document.querySelectorAll('.kb-article-item');
-  const resultCount = document.getElementById('kb-result-count');
-  const noResults = document.getElementById('kb-no-results');
-  const articlesContainer = document.getElementById('kb-articles-container');
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('kb-search-input');
+    const searchBtn = document.getElementById('kb-search-btn');
+    const tagBtns = document.querySelectorAll('.kb-tag-btn');
+    const articles = document.querySelectorAll('.kb-article-item');
+    const resultCount = document.getElementById('kb-result-count');
+    const noResults = document.getElementById('kb-no-results');
+    const articlesContainer = document.getElementById('kb-articles-container');
 
-  // Search function
-  function performSearch() {
-    const query = searchInput.value.toLowerCase().trim();
-    let visibleCount = 0;
+    // Search function
+    function performSearch() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
 
-    articles.forEach(function(article) {
-      const title = article.querySelector('.kb-article-title').textContent.toLowerCase();
-      const excerpt = article.querySelector('.kb-article-excerpt').textContent.toLowerCase();
-      const category = article.getAttribute('data-category').toLowerCase();
+      articles.forEach(function(article) {
+        const title = article.querySelector('.kb-article-title').textContent.toLowerCase();
+        const excerpt = article.querySelector('.kb-article-excerpt').textContent.toLowerCase();
+        const category = article.getAttribute('data-category').toLowerCase();
 
-      if (query === '' || title.includes(query) || excerpt.includes(query) || category.includes(query)) {
-        article.classList.remove('d-none');
-        visibleCount++;
-      } else {
-        article.classList.add('d-none');
-      }
-    });
-
-    // Show/hide no results message
-    if (visibleCount === 0) {
-      noResults.classList.remove('d-none');
-      articlesContainer.classList.add('d-none');
-    } else {
-      noResults.classList.add('d-none');
-      articlesContainer.classList.remove('d-none');
-    }
-
-    resultCount.textContent = 'Menampilkan ' + visibleCount + ' artikel';
-  }
-
-  // Filter by category
-  function filterByCategory(category) {
-    let visibleCount = 0;
-
-    articles.forEach(function(article) {
-      const artCategory = article.getAttribute('data-category');
-
-      if (artCategory === category) {
-        article.classList.remove('d-none');
-        visibleCount++;
-      } else {
-        article.classList.add('d-none');
-      }
-    });
-
-    if (visibleCount === 0) {
-      noResults.classList.remove('d-none');
-      articlesContainer.classList.add('d-none');
-    } else {
-      noResults.classList.add('d-none');
-      articlesContainer.classList.remove('d-none');
-    }
-
-    resultCount.textContent = 'Menampilkan ' + visibleCount + ' artikel untuk kategori ' + category;
-  }
-
-  // Show all articles
-  function showAll() {
-    articles.forEach(function(article) {
-      article.classList.remove('d-none');
-    });
-    noResults.classList.add('d-none');
-    articlesContainer.classList.remove('d-none');
-    resultCount.textContent = 'Menampilkan ' + articles.length + ' artikel';
-  }
-
-  // Search button click
-  searchBtn.addEventListener('click', function() {
-    // Clear active tag
-    tagBtns.forEach(function(btn) { btn.classList.remove('active'); });
-
-    if (searchInput.value.trim() === '') {
-      // Show only first 3 when search is empty
-      articles.forEach(function(article, index) {
-        if (index < 3) {
+        if (query === '' || title.includes(query) || excerpt.includes(query) || category.includes(query)) {
           article.classList.remove('d-none');
+          visibleCount++;
         } else {
           article.classList.add('d-none');
         }
       });
-      resultCount.textContent = 'Menampilkan 3 artikel teratas';
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.classList.remove('d-none');
+        articlesContainer.classList.add('d-none');
+      } else {
+        noResults.classList.add('d-none');
+        articlesContainer.classList.remove('d-none');
+      }
+
+      resultCount.textContent = 'Menampilkan ' + visibleCount + ' artikel';
+    }
+
+    // Filter by category
+    function filterByCategory(category) {
+      let visibleCount = 0;
+
+      articles.forEach(function(article) {
+        const artCategory = article.getAttribute('data-category');
+
+        if (artCategory === category) {
+          article.classList.remove('d-none');
+          visibleCount++;
+        } else {
+          article.classList.add('d-none');
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.classList.remove('d-none');
+        articlesContainer.classList.add('d-none');
+      } else {
+        noResults.classList.add('d-none');
+        articlesContainer.classList.remove('d-none');
+      }
+
+      resultCount.textContent = 'Menampilkan ' + visibleCount + ' artikel untuk kategori ' + category;
+    }
+
+    // Show all articles
+    function showAll() {
+      articles.forEach(function(article) {
+        article.classList.remove('d-none');
+      });
       noResults.classList.add('d-none');
       articlesContainer.classList.remove('d-none');
-    } else {
-      performSearch();
+      resultCount.textContent = 'Menampilkan ' + articles.length + ' artikel';
     }
-  });
 
-  // Enter key on search input
-  searchInput.addEventListener('keyup', function(e) {
-    if (e.key === 'Enter') {
-      searchBtn.click();
-    }
-  });
+    // Search button click
+    searchBtn.addEventListener('click', function() {
+      // Clear active tag
+      tagBtns.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
 
-  // Category tag buttons
-  tagBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const category = this.getAttribute('data-category');
-
-      // Toggle active state
-      const wasActive = this.classList.contains('active');
-      tagBtns.forEach(function(b) { b.classList.remove('active'); });
-
-      if (wasActive) {
-        // Deselect - show default 3
+      if (searchInput.value.trim() === '') {
+        // Show only first 3 when search is empty
         articles.forEach(function(article, index) {
           if (index < 3) {
             article.classList.remove('d-none');
@@ -586,11 +583,46 @@ document.addEventListener('DOMContentLoaded', function() {
         noResults.classList.add('d-none');
         articlesContainer.classList.remove('d-none');
       } else {
-        this.classList.add('active');
-        searchInput.value = '';
-        filterByCategory(category);
+        performSearch();
       }
     });
+
+    // Enter key on search input
+    searchInput.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+        searchBtn.click();
+      }
+    });
+
+    // Category tag buttons
+    tagBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+
+        // Toggle active state
+        const wasActive = this.classList.contains('active');
+        tagBtns.forEach(function(b) {
+          b.classList.remove('active');
+        });
+
+        if (wasActive) {
+          // Deselect - show default 3
+          articles.forEach(function(article, index) {
+            if (index < 3) {
+              article.classList.remove('d-none');
+            } else {
+              article.classList.add('d-none');
+            }
+          });
+          resultCount.textContent = 'Menampilkan 3 artikel teratas';
+          noResults.classList.add('d-none');
+          articlesContainer.classList.remove('d-none');
+        } else {
+          this.classList.add('active');
+          searchInput.value = '';
+          filterByCategory(category);
+        }
+      });
+    });
   });
-});
 </script>

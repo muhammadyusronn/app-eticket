@@ -10,6 +10,6 @@ class KnowledgeBaseController extends MY_Controller
   {
     $data['title'] = 'Knowledge Base - e-Ticket';
     $data['active'] = 'knowledgebase';
-    $this->render('backend/knowledgebase', $data);
+    $this->render('backend/knowledgebase/list', $data);
   }
 }
