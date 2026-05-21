@@ -49,84 +49,125 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    protected function text_to_voice($to, $message)
+    public function do_upload_multiple($field_name, $dir)
     {
-        $userkey = 'gnb6d0';
-        $passkey = '18831kyv0o';
-        $telepon = $to;
-        $message = $message;
-        $url = 'https://console.zenziva.net/voice/api/sendvoice/';
-        $curlHandle = curl_init();
-        curl_setopt($curlHandle, CURLOPT_URL, $url);
-        curl_setopt($curlHandle, CURLOPT_HEADER, 0);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
-        curl_setopt($curlHandle, CURLOPT_POST, 1);
-        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, array(
-            'userkey' => $userkey,
-            'passkey' => $passkey,
-            'to' => $telepon,
-            'message' => $message
-        ));
-        $results = json_decode(curl_exec($curlHandle), true);
-        curl_close($curlHandle);
-    }
-    protected function send_sms($to, $message)
-    {
-        $userkey = 'gnb6d0';
-        $passkey = '18831kyv0o';
-        $telepon = $to;
-        $message = $message;
-        $url = 'https://console.zenziva.net/reguler/api/sendsms/';
-        $curlHandle = curl_init();
-        curl_setopt($curlHandle, CURLOPT_URL, $url);
-        curl_setopt($curlHandle, CURLOPT_HEADER, 0);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
-        curl_setopt($curlHandle, CURLOPT_POST, 1);
-        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, array(
-            'userkey' => $userkey,
-            'passkey' => $passkey,
-            'to' => $telepon,
-            'message' => $message
-        ));
-        $results = json_decode(curl_exec($curlHandle), true);
-        curl_close($curlHandle);
+        $files = $_FILES[$field_name];
+        $uploaded_files = [];
+
+        for ($i = 0; $i < count($files['name']); $i++) {
+
+            if ($files['name'][$i] == '') continue;
+
+            $_FILES['file']['name']     = $files['name'][$i];
+            $_FILES['file']['type']     = $files['type'][$i];
+            $_FILES['file']['tmp_name'] = $files['tmp_name'][$i];
+            $_FILES['file']['error']    = $files['error'][$i];
+            $_FILES['file']['size']     = $files['size'][$i];
+
+            $randomName = $this->__generate_random_string(20);
+            $extension  = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            $newName    = $randomName . '.' . strtolower($extension);
+
+            $config['upload_path']   = FCPATH . $dir;
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf';
+            $config['max_size']      = 5120;
+            $config['file_name']     = $newName;
+            $config['overwrite']     = true;
+
+            if (!is_dir($config['upload_path'])) {
+                mkdir($config['upload_path'], 0755, true);
+            }
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+
+                $upload_data = $this->upload->data();
+
+                $uploaded_files[] = $upload_data['file_name'];
+            } else {
+
+                return [
+                    'is_success' => false,
+                    'message' => $this->upload->display_errors('', '')
+                ];
+            }
+        }
+
+        return [
+            'is_success' => true,
+            'files' => $uploaded_files
+        ];
     }
 
-    protected function send_wa($to, $message)
+    function generateTicketNomber($prefix, $category, $lastNumber)
     {
-        $userkey = 'gnb6d0';
-        $passkey = '18831kyv0o';
-        $telepon = $to;
-        $message = $message;
-        $url = 'https://console.zenziva.net/wareguler/api/sendWA/';
-        $curlHandle = curl_init();
-        curl_setopt($curlHandle, CURLOPT_URL, $url);
-        curl_setopt($curlHandle, CURLOPT_HEADER, 0);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
-        curl_setopt($curlHandle, CURLOPT_POST, 1);
-        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, array(
-            'userkey' => $userkey,
-            'passkey' => $passkey,
-            'to' => $telepon,
-            'message' => $message
-        ));
-        return $results = json_decode(curl_exec($curlHandle), true);
-        curl_close($curlHandle);
+        // Increment last number
+        $nextNumber = $lastNumber;
+
+        // Format: 0001
+        $formattedNumber = str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+
+        // Result: TID-123-0001
+        return "{$prefix}-{$category}-{$formattedNumber}";
     }
+
+    function getLastCounterNumber()
+    {
+        $this->db->trans_begin();
+
+        try {
+            $this->db->select('last_number');
+            $this->db->from('ticket_counter');
+            $this->db->order_by('id', 'DESC');
+            $this->db->limit(1);
+            $row = $this->db->get()->row();
+
+            if (!$row) {
+
+                $this->db->insert('ticket_counter', [
+                    'last_number' => 0
+                ]);
+
+                $lastNumber = 0;
+            } else {
+                $lastNumber = $row->last_number;
+            }
+            $newNumber = $lastNumber + 1;
+
+            // Update counter
+            $this->db->update('ticket_counter', [
+                'last_number' => $newNumber
+            ]);
+            $this->db->trans_commit();
+
+            return $newNumber;
+        } catch (Exception $e) {
+            $this->db->trans_rollback();
+
+            throw $e;
+        }
+    }
+
+    function auditTrailTicket($ticketId, $oldStatus, $newStatus, $changedBy)
+    {
+        $this->load->model('TicketStatusHistoriesModel');
+        $this->TicketStatusHistoriesModel->insert([
+            'ticket_id' => $ticketId,
+            'old_status' => $oldStatus,
+            'new_status' => $newStatus,
+            'changed_by' => $changedBy,
+            'changed_at' => date('Y-m-d H:i:s'),
+        ]);
+    }
+
     protected function arr_bulan($id)
     {
         $arrNamaBulan = array("01" => "Januari", "02" => "Februari", "03" => "Maret", "04" => "April", "05" => "Mei", "06" => "Juni", "07" => "Juli", "08" => "Agustus", "09" => "September", "10" => "Oktober", "11" => "November", "12" => "Desember");
         return $arrNamaBulan[$id];
     }
+
     protected function POST($name)
     {
         return $this->input->post($name);
@@ -149,21 +190,58 @@ class MY_Controller extends CI_Controller
 
     protected function render($view, $data = '')
     {
+        $this->load->model('TicketModel');
+        if (1 == 1) {
+            $cond = [
+                'status_id' => 1,
+                'is_active' => 1
+            ];
+            $cond_on_progress = [
+                'status_id' => 2,
+                'is_active' => 1
+            ];
+            $cond_on_pending = [
+                'status_id' => 3,
+                'is_active' => 1
+            ];
+            $cond_on_resolved = [
+                'status_id' => 4,
+                'is_active' => 1
+            ];
+            $cond_on_closed = [
+                'status_id' => 5,
+                'is_active' => 1
+            ];
+        } else {
+            $cond = [
+                'status_id' => 1,
+                'is_active' => 1
+            ];
+            $cond_on_progress = [
+                'status_id' => 2,
+                'is_active' => 1
+            ];
+            $cond_on_pending = [
+                'status_id' => 3,
+                'is_active' => 1
+            ];
+            $cond_on_resolved = [
+                'status_id' => 4,
+                'is_active' => 1
+            ];
+            $cond_on_closed = [
+                'status_id' => 5,
+                'is_active' => 1
+            ];
+        }
+        $data['jumlah_ticket_waiting'] = count($this->TicketModel->get($cond));
+        $data['jumlah_ticket_on_progress'] = count($this->TicketModel->get($cond_on_progress));
+        $data['jumlah_ticket_pending'] = count($this->TicketModel->get($cond_on_pending));
+        $data['jumlah_ticket_resolved'] = count($this->TicketModel->get($cond_on_resolved));
+        $data['jumlah_ticket_closed'] = count($this->TicketModel->get($cond_on_closed));
         $this->load->view('backend/template/header', $data);
         $this->load->view($view, $data);
         $this->load->view('backend/template/footer');
-    }
-    protected function renders($view, $data = '')
-    {
-        $this->load->view('backend/layouts/head-login', $data);
-        $this->load->view($view, $data);
-        $this->load->view('backend/layouts/foot-login');
-    }
-    protected function renderp($view, $data = '')
-    {
-        $this->load->view('backend/layouts/head-pengunjung', $data);
-        $this->load->view($view, $data);
-        $this->load->view('backend/layouts/foot-pengunjung');
     }
     protected function flashmsg($msg, $type = 'success', $name = 'msg')
     {

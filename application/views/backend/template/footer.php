@@ -221,13 +221,40 @@
 
 <!-- Jquery Core Js -->
 <script src="<?= base_url() ?>assets/bundles/libscripts.bundle.js"></script>
-
-<!-- Plugin Js-->
 <script src="<?= base_url() ?>assets/bundles/apexcharts.bundle.js"></script>
+<?php if ($active == "dash") : ?>
+
+<?php endif; ?>
 
 <!-- Jquery Page Js -->
-<script src="<?= base_url('assets/') ?>js/template.js"></script>
 <script src="<?= base_url('assets/') ?>js/page/hr.js"></script>
+
+<!-- Plugin Js-->
+<script src="<?= base_url('assets/') ?>js/template.js"></script>
+<script src="<?= base_url() ?>assets/bundles/dataTables.bundle.js"></script>
+<script>
+    // project data table
+    $(document).ready(function() {
+        $('#myProjectTable')
+            .addClass('nowrap')
+            .dataTable({
+                responsive: true,
+                columnDefs: [{
+                    targets: [-1, -3],
+                    className: 'dt-body-right'
+                }]
+            });
+        $('.deleterow').on('click', function() {
+            var tablename = $(this).closest('table').DataTable();
+            tablename
+                .row($(this)
+                    .parents('tr'))
+                .remove()
+                .draw();
+
+        });
+    });
+</script>
 </body>
 
 <!-- Mirrored from pixelwibes.com/template/my-task/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 May 2026 02:56:15 GMT -->

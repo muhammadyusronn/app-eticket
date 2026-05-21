@@ -12,6 +12,9 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
   <!-- project css file  -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/my-task.style.min.css">
+  <!-- plugin css file  -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugin/datatables/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugin/datatables/dataTables.bootstrap5.min.css">
 </head>
 
 <body data-mytask="theme-indigo">
@@ -48,29 +51,29 @@
                 class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
             <!-- Menu: Sub menu ul -->
             <ul class="sub-menu collapse" id="tikit-Components">
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>All Tickets</span></a></li>
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Waiting <span
-                      class="badge bg-info rounded-pill">1</span></span></a></li>
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>On Progress <span
-                      class="badge bg-success rounded-pill">2</span></span></a></li>
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Pending <span
-                      class="badge bg-warning rounded-pill">3</span></span></a></li>
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Resolved <span
-                      class="badge bg-secondary rounded-pill">2</span></span></a></li>
-              <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Closed <span
-                      class="badge bg-lightgreen rounded-pill">1</span></span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket') ?>"> <span>All Tickets</span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket?status=1') ?>"> <span>Waiting <span
+                      class="badge bg-info rounded-pill"><?= $jumlah_ticket_waiting ?></span></span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket?status=2') ?>"> <span>On Progress <span
+                      class="badge bg-success rounded-pill"><?= $jumlah_ticket_on_progress ?></span></span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket?status=3') ?>"> <span>Pending <span
+                      class="badge bg-warning rounded-pill"><?= $jumlah_ticket_pending ?></span></span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket?status=4') ?>"> <span>Resolved <span
+                      class="badge bg-secondary rounded-pill"><?= $jumlah_ticket_resolved ?></span></span></a></li>
+              <li><a class="ms-link" href="<?= base_url('ticket?status=5') ?>"> <span>Closed <span
+                      class="badge bg-lightgreen rounded-pill"><?= $jumlah_ticket_closed ?></span></span></a></li>
             </ul>
           </li>
-          <li class="collapsed">
+          <!-- <li class="collapsed">
             <a class="m-link" data-bs-toggle="collapse" data-bs-target="#issues" href="#"><i class="icofont-bug"></i>
               <span>Issues</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
-            <!-- Menu: Sub menu ul -->
+           
             <ul class="sub-menu collapse" id="issues">
               <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>All Issues</span></a></li>
               <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Open Issues</span></a></li>
               <li><a class="ms-link" onclick="return alert('sabarrrrrr')"> <span>Reported by Me</span></a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- END -->
         </ul>
 
