@@ -19,15 +19,15 @@
           dapat membantu Anda.</p>
       </div>
     </div>
+    <form id="ct-ticket-form" method="POST" action="<?= $url ?>" enctype="multipart/form-data">
 
-    <div class="row g-4">
-      <!-- Left Column: Detail Masalah -->
-      <div class="col-lg-8">
-        <div class="card ct-form-card">
-          <div class="card-body p-4">
-            <h5 class="fw-bold mb-4">Detail Masalah</h5>
+      <div class="row g-4">
+        <!-- Left Column: Detail Masalah -->
+        <div class="col-lg-8">
+          <div class="card ct-form-card">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-4">Detail Masalah</h5>
 
-            <form id="ct-ticket-form" enctype="multipart/form-data">
               <!-- Judul Pertanyaan -->
               <div class="mb-4">
                 <label for="ct-judul" class="form-label fw-bold ct-label">JUDUL PERTANYAAN <span
@@ -49,14 +49,13 @@
 
               <!-- Aplikasi -->
               <div class="mb-4">
-                <label for="ct-aplikasi" class="form-label fw-bold ct-label">APLIKASI <span
+                <label for="ct-module" class="form-label fw-bold ct-label">MODULE <span
                     class="text-danger">*</span></label>
-                <select class="form-select ct-input" id="ct-aplikasi" name="aplikasi" required>
-                  <option value="" selected disabled>Pilih Aplikasi</option>
-                  <option value="SIKEP">SIKEP</option>
-                  <option value="E-Court">E-Court</option>
-                  <option value="SIPP">SIPP</option>
-                  <option value="KINSATKER">KINSATKER</option>
+                <select class="form-select ct-input" id="ct-module" name="module" required>
+                  <option value="" selected disabled>Pilih Module </option>
+                  <?php foreach ($modules as $i) : ?>
+                    <option value="<?= $i->id; ?>"><?= $i->module_name; ?></option>
+                  <?php endforeach; ?>
                 </select>
               </div>
 
@@ -74,7 +73,7 @@
               <div class="mb-3">
                 <label class="form-label fw-bold ct-label">LAMPIRAN (OPSIONAL)</label>
                 <div class="ct-upload-area" id="ct-upload-area">
-                  <input type="file" class="d-none" id="ct-file-input" name="lampiran" accept=".png,.jpg,.jpeg,.pdf"
+                  <input type="file" class="d-none" id="ct-file-input" name="attachment[]" accept=".png,.jpg,.jpeg,.pdf"
                     multiple>
                   <div class="ct-upload-content text-center" id="ct-upload-content">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
@@ -91,89 +90,91 @@
                 <!-- File list -->
                 <div id="ct-file-list" class="mt-2"></div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Right Column: Tipe Layanan & Submit -->
-      <div class="col-lg-4">
-        <!-- Tipe Layanan Card -->
-        <div class="card ct-form-card mb-4">
-          <div class="card-body p-4">
-            <h5 class="fw-bold mb-3">Tipe Layanan</h5>
+        <!-- Right Column: Tipe Layanan & Submit -->
+        <div class="col-lg-4">
+          <!-- Tipe Layanan Card -->
+          <div class="card ct-form-card mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-3">Tipe Layanan</h5>
 
-            <!-- Regular Option -->
-            <div class="ct-service-option active mb-3" id="ct-opt-regular" data-type="regular">
-              <div class="d-flex align-items-start">
-                <div class="ct-service-icon me-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.855-.439-.855-.842 0-.464.36-.789.855-.876v1.718zm.6 1.548c.713.164 1.045.44 1.045.89 0 .527-.422.876-1.045.966V8.893z" />
-                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8z" />
-                  </svg>
+              <!-- Regular Option -->
+              <div class="ct-service-option active mb-3" id="ct-opt-regular" data-type="regular">
+                <div class="d-flex align-items-start">
+                  <div class="ct-service-icon me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.855-.439-.855-.842 0-.464.36-.789.855-.876v1.718zm.6 1.548c.713.164 1.045.44 1.045.89 0 .527-.422.876-1.045.966V8.893z" />
+                      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1">REGULAR</h6>
+                    <p class="text-muted small mb-0">Layanan standar untuk masalah umum. Waktu respon estimasi 1×24 jam
+                      kerja.</p>
+                  </div>
                 </div>
-                <div>
-                  <h6 class="fw-bold mb-1">REGULAR</h6>
-                  <p class="text-muted small mb-0">Layanan standar untuk masalah umum. Waktu respon estimasi 1×24 jam
-                    kerja.</p>
+              </div>
+
+              <!-- Token Urgent Option -->
+              <div class="ct-service-option" id="ct-opt-token" data-type="token">
+                <div class="d-flex align-items-start">
+                  <div class="ct-service-icon me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      viewBox="0 0 16 16">
+                      <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="d-flex align-items-center gap-2 mb-1">
+                      <h6 class="fw-bold mb-0">TOKEN</h6>
+                      <span class="badge ct-badge-urgent">URGENT</span>
+                    </span>
+                    <p class="text-muted small mb-0">Prioritas tinggi. Membutuhkan kode token khusus untuk memilih tim
+                      IKS
+                      sesuai yang anda mau.</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Token Urgent Option -->
-            <div class="ct-service-option" id="ct-opt-token" data-type="token">
-              <div class="d-flex align-items-start">
-                <div class="ct-service-icon me-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <span class="d-flex align-items-center gap-2 mb-1">
-                    <h6 class="fw-bold mb-0">TOKEN</h6>
-                    <span class="badge ct-badge-urgent">URGENT</span>
-                  </span>
-                  <p class="text-muted small mb-0">Prioritas tinggi. Membutuhkan kode token khusus untuk memilih tim IKS
-                    sesuai yang anda mau.</p>
-                </div>
+          <!-- Token Input (hidden by default) -->
+          <div class="card ct-form-card mb-4 d-none" id="ct-token-card">
+            <div class="card-body p-4">
+              <label for="ct-token-input" class="form-label fw-bold ct-label">KODE TOKEN <span
+                  class="text-danger">*</span></label>
+              <input type="text" class="form-control ct-input" id="ct-token-input" name="token"
+                placeholder="Masukkan kode token dari supervisor">
+            </div>
+          </div>
+
+          <!-- Submit Card -->
+          <div class="card ct-submit-card">
+            <div class="card-body p-4 text-center">
+              <div class="ct-submit-icon mx-auto mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                </svg>
               </div>
+              <p class="text-muted small mb-3">Dengan mengirimkan tiket, Anda menyetujui kebijakan prosedur dukungan
+                Team
+                IT IKS.</p>
+              <button type="submit" name="submit" class="btn ct-submit-btn w-100 py-2 fw-bold" id="ct-submit-btn">
+                Kirim Tiket <i class="icofont-paper-plane ms-1"></i>
+              </button>
             </div>
-          </div>
-        </div>
-
-        <!-- Token Input (hidden by default) -->
-        <div class="card ct-form-card mb-4 d-none" id="ct-token-card">
-          <div class="card-body p-4">
-            <label for="ct-token-input" class="form-label fw-bold ct-label">KODE TOKEN <span
-                class="text-danger">*</span></label>
-            <input type="text" class="form-control ct-input" id="ct-token-input" name="token"
-              placeholder="Masukkan kode token dari supervisor">
-          </div>
-        </div>
-
-        <!-- Submit Card -->
-        <div class="card ct-submit-card">
-          <div class="card-body p-4 text-center">
-            <div class="ct-submit-icon mx-auto mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                <path
-                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
-              </svg>
-            </div>
-            <p class="text-muted small mb-3">Dengan mengirimkan tiket, Anda menyetujui kebijakan prosedur dukungan Team
-              IT IKS.</p>
-            <button type="button" class="btn ct-submit-btn w-100 py-2 fw-bold" id="ct-submit-btn">
-              Kirim Tiket <i class="icofont-paper-plane ms-1"></i>
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
 
   </div><!-- container-xxl end -->
 </div>
@@ -573,43 +574,43 @@
     }
 
     // Form submit
-    var submitBtn = document.getElementById('ct-submit-btn');
-    submitBtn.addEventListener('click', function() {
-      var judul = document.getElementById('ct-judul').value.trim();
-      var kategori = document.getElementById('ct-kategori').value;
-      var deskripsi = document.getElementById('ct-deskripsi').value.trim();
-      var activeType = document.querySelector('.ct-service-option.active');
-      var serviceType = activeType ? activeType.getAttribute('data-type') : '';
+    // var submitBtn = document.getElementById('ct-submit-btn');
+    // submitBtn.addEventListener('click', function() {
+    //   var judul = document.getElementById('ct-judul').value.trim();
+    //   var kategori = document.getElementById('ct-kategori').value;
+    //   var deskripsi = document.getElementById('ct-deskripsi').value.trim();
+    //   var activeType = document.querySelector('.ct-service-option.active');
+    //   var serviceType = activeType ? activeType.getAttribute('data-type') : '';
 
-      // Validation
-      if (!judul) {
-        alert('Silakan isi judul pertanyaan.');
-        document.getElementById('ct-judul').focus();
-        return;
-      }
-      if (!kategori) {
-        alert('Silakan pilih kategori masalah.');
-        document.getElementById('ct-kategori').focus();
-        return;
-      }
-      if (!deskripsi) {
-        alert('Silakan isi deskripsi masalah.');
-        document.getElementById('ct-deskripsi').focus();
-        return;
-      }
+    //   // Validation
+    //   if (!judul) {
+    //     alert('Silakan isi judul pertanyaan.');
+    //     document.getElementById('ct-judul').focus();
+    //     return;
+    //   }
+    //   if (!kategori) {
+    //     alert('Silakan pilih kategori masalah.');
+    //     document.getElementById('ct-kategori').focus();
+    //     return;
+    //   }
+    //   if (!deskripsi) {
+    //     alert('Silakan isi deskripsi masalah.');
+    //     document.getElementById('ct-deskripsi').focus();
+    //     return;
+    //   }
 
-      if (serviceType === 'token') {
-        var tokenVal = document.getElementById('ct-token-input').value.trim();
-        if (!tokenVal) {
-          alert('Silakan masukkan kode token dari supervisor.');
-          document.getElementById('ct-token-input').focus();
-          return;
-        }
-      }
+    //   if (serviceType === 'token') {
+    //     var tokenVal = document.getElementById('ct-token-input').value.trim();
+    //     if (!tokenVal) {
+    //       alert('Silakan masukkan kode token dari supervisor.');
+    //       document.getElementById('ct-token-input').focus();
+    //       return;
+    //     }
+    //   }
 
-      // Show success message
-      showSuccessModal();
-    });
+    //   // Show success message
+    //   showSuccessModal();
+    // });
 
     function showSuccessModal() {
       var overlay = document.createElement('div');
