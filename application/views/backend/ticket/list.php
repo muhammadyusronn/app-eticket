@@ -115,7 +115,8 @@
                   <?php foreach ($tickets as $i): ?>
                     <tr>
                       <td>
-                        <a href="ticket-detail.html" class="fw-bold text-secondary"><?= $i->ticket_number ?></a>
+                        <a href="<?= base_url('edit-ticket?id=' . $i->id); ?>"
+                          class="fw-bold text-secondary"><?= $i->ticket_number ?></a>
                       </td>
                       <td>
                         <?= $i->title ?>

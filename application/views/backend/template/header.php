@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>:: My-Task:: Employee Dashboard </title>
+  <title>:: eTicket:: BADILAG </title>
   <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
   <!-- project css file  -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/my-task.style.min.css">
@@ -133,8 +133,8 @@
                               <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar1.jpg"
                                 alt="">
                               <div class="flex-fill ms-2">
-                                <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Dylan
-                                    Hunter</span> <small>2MIN</small></p>
+                                <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Muhammad
+                                    Yusron Hartoyo</span> <small>2MIN</small></p>
                                 <span class="">Added 2021-02-19 my-Task ui/ux Design <span
                                     class="badge bg-success">Review</span></span>
                               </div>
@@ -203,7 +203,8 @@
               </div>
               <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center">
                 <div class="u-info me-2">
-                  <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Dylan Hunter</span></p>
+                  <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Muhammad
+                      Yusron Hartoyo</span></p>
                   <small>Admin Profile</small>
                 </div>
                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown"
@@ -218,8 +219,8 @@
                         <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/profile_av.png"
                           alt="profile">
                         <div class="flex-fill ms-3">
-                          <p class="mb-0"><span class="font-weight-bold">Dylan Hunter</span></p>
-                          <small class="">Dylan.hunter@gmail.com</small>
+                          <p class="mb-0"><span class="font-weight-bold">Muhammad Yusron Hartoyo</span></p>
+                          <small class="">muhammad.yusron@gmail.com</small>
                         </div>
                       </div>
 
@@ -260,7 +261,7 @@
             <!-- menu toggler -->
             <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse"
               data-bs-target="#mainHeader">
-              <span class="fa fa-bars"></span>
+              <span class="icofont-navigation-menu"></span>
             </button>
 
             <!-- main menu Search-->
