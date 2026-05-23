@@ -97,6 +97,7 @@
 
       </form>
       <div class="row clearfix g-3">
+        <?php echo $this->session->flashdata('msg'); ?>
         <div class="col-sm-12">
           <div class="card mb-3">
             <div class="card-body">
@@ -116,14 +117,14 @@
                     <tr>
                       <td>
                         <a href="<?= base_url('edit-ticket?id=' . $i->id); ?>"
-                          class="fw-bold text-secondary"><?= $i->ticket_number ?></a>
+                          class="fw-bold text-secondary"><?= html_escape($i->ticket_number) ?></a>
                       </td>
                       <td>
-                        <?= $i->title ?>
+                        <?= limit_text(html_escape($i->title), 50) ?>
                       </td>
                       <td>
                         <img class="avatar rounded-circle" src="<?= base_url($i->image) ?>" alt="">
-                        <span class="fw-bold ms-1"><?= $i->pelapor ?></span>
+                        <span class="fw-bold ms-1"><?= html_escape($i->pelapor) ?></span>
                       </td>
                       <td>
                         <?= date('d-m-Y H:m:s', strtotime($i->reported_at)) ?>
@@ -131,24 +132,33 @@
                       <td>
                         <div>
                           <span class="badge bg-info">
-                            <?= $i->petugas ? $i->petugas : 'Unassigned' ?>
+                            <?= html_escape($i->petugas) ? html_escape($i->petugas) : 'Unassigned' ?>
                           </span>
                         </div>
 
                         <div class="mt-1">
-                          <span class="badge bg-<?= $i->status_class ?>">
-                            <?= $i->status_name ?>
+                          <span
+                            class="badge bg-<?= html_escape($i->status_class) ? html_escape($i->status_class) : 'secondary' ?>">
+                            <?= html_escape($i->status_name) ?>
                           </span>
                         </div>
                       </td>
                       <td>
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                          <a href="<?= base_url('edit-ticket?id=' . $i->id); ?>" class="btn btn-outline-secondary"><i
-                              class="icofont-edit text-success"></i></a>
-                          <a href="<?= base_url('cancel-ticket?id=' . $i->id); ?>"
-                            onclick="return confirm('Anda yakin membatalkan tiket?')" class="btn btn-outline-secondary">
-                            <i class="icofont-ui-delete text-danger"></i>
-                          </a>
+                          <?php if ($i->status_id != 4): ?>
+                            <a href="<?= base_url('edit-ticket?id=' . $i->id); ?>" class="btn btn-outline-secondary"><i
+                                class="icofont-edit text-success"></i></a>
+                            <?php if ($i->status_id == 1): ?>
+                              <a href="<?= base_url('cancel-ticket?id=' . $i->id); ?>"
+                                onclick="return confirm('Anda yakin membatalkan tiket?')" class="btn btn-outline-secondary">
+                                <i class="icofont-ui-delete text-danger"></i>
+                              </a>
+                            <?php endif; ?>
+                          <?php else: ?>
+                            <a href="<?= base_url('edit-ticket?id=' . $i->id); ?>" class="btn btn-info">
+                              <i class="icofont-eye text-white"></i>
+                            </a>
+                          <?php endif; ?>
                         </div>
                       </td>
                     </tr>

@@ -18,10 +18,12 @@ class TicketModel extends MY_Model
         t.description,
         t.ticket_number,
         s.status_name,
+        t.status_id,
         r.name AS pelapor,
         r.image,
         t.reported_at,
         p.name AS petugas,
+        p.id as petugas_id,
         ta.assigned_at,
         CASE
           WHEN t.status_id = 1 THEN 'primary'
@@ -29,7 +31,13 @@ class TicketModel extends MY_Model
           WHEN t.status_id = 3 THEN 'warning'
           WHEN t.status_id = 4 THEN 'secondary'
           ELSE 'light'
-        END AS status_class
+        END AS status_class,
+        th.new_status,
+        th.changed_at AS status_changed_at,
+        th.pending_reason,
+        th.root_cause,
+        th.solution,
+        th.preventive_action
 ");
     $this->db->from('tickets t');
     $this->db->join(
@@ -63,6 +71,25 @@ class TicketModel extends MY_Model
         AND latest.max_assigned = ta1.assigned_at
         ) ta',
       'ta.ticket_id = t.id',
+      'left'
+    );
+
+    // latest histories   
+    $this->db->join(
+      '(SELECT 
+            th1.*
+        FROM ticket_status_histories th1
+        INNER JOIN (
+            SELECT 
+                ticket_id,
+                MAX(changed_at) AS max_changed
+            FROM ticket_status_histories
+            GROUP BY ticket_id
+        ) latest_history 
+        ON latest_history.ticket_id = th1.ticket_id
+        AND latest_history.max_changed = th1.changed_at
+        ) th',
+      'th.ticket_id = t.id',
       'left'
     );
 
