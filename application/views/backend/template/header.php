@@ -58,10 +58,8 @@
                       class="badge bg-success rounded-pill"><?= $jumlah_ticket_on_progress ?></span></span></a></li>
               <li><a class="ms-link" href="<?= base_url('ticket?status=3') ?>"> <span>Pending <span
                       class="badge bg-warning rounded-pill"><?= $jumlah_ticket_pending ?></span></span></a></li>
-              <li><a class="ms-link" href="<?= base_url('ticket?status=4') ?>"> <span>Resolved <span
+              <li><a class="ms-link" href="<?= base_url('ticket?status=4') ?>"> <span>Solved <span
                       class="badge bg-secondary rounded-pill"><?= $jumlah_ticket_resolved ?></span></span></a></li>
-              <li><a class="ms-link" href="<?= base_url('ticket?status=5') ?>"> <span>Closed <span
-                      class="badge bg-lightgreen rounded-pill"><?= $jumlah_ticket_closed ?></span></span></a></li>
             </ul>
           </li>
           <!-- <li class="collapsed">
@@ -96,21 +94,7 @@
 
             <!-- header rightbar icon -->
             <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
-              <div class="d-flex">
-                <a class="nav-link text-primary collapsed" href="help.html" title="Get Help">
-                  <i class="icofont-info-square fs-5"></i>
-                </a>
-                <div class="avatar-list avatar-list-stacked px-3">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar2.jpg" alt="">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar1.jpg" alt="">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar3.jpg" alt="">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar4.jpg" alt="">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar7.jpg" alt="">
-                  <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar8.jpg" alt="">
-                  <span class="avatar rounded-circle text-center pointer" data-bs-toggle="modal"
-                    data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                </div>
-              </div>
+
               <div class="dropdown notifications">
                 <a class="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
                   <i class="icofont-alarm fs-5"></i>
@@ -130,7 +114,7 @@
                         <ul class="list-unstyled list mb-0">
                           <li class="py-2 mb-1 border-bottom">
                             <a href="javascript:void(0);" class="d-flex">
-                              <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar1.jpg"
+                              <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar5.jpg"
                                 alt="">
                               <div class="flex-fill ms-2">
                                 <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Muhammad
@@ -185,7 +169,7 @@
                           </li>
                           <li class="py-2">
                             <a href="javascript:void(0);" class="d-flex">
-                              <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar7.jpg"
+                              <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar5.jpg"
                                 alt="">
                               <div class="flex-fill ms-2">
                                 <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Zoe
@@ -210,13 +194,13 @@
                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown"
                   data-bs-display="static">
                   <img class="avatar lg rounded-circle img-thumbnail"
-                    src="<?= base_url() ?>assets/images/profile_av.png" alt="profile">
+                    src="<?= base_url() ?>assets/images/xs/avatar5.jpg" alt="profile">
                 </a>
                 <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                   <div class="card border-0 w280">
                     <div class="card-body pb-0">
                       <div class="d-flex py-1">
-                        <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/profile_av.png"
+                        <img class="avatar rounded-circle" src="<?= base_url() ?>assets/images/xs/avatar5.jpg"
                           alt="profile">
                         <div class="flex-fill ms-3">
                           <p class="mb-0"><span class="font-weight-bold">Muhammad Yusron Hartoyo</span></p>

@@ -150,7 +150,7 @@ class MY_Controller extends CI_Controller
         }
     }
 
-    function auditTrailTicket($ticketId, $oldStatus, $newStatus, $changedBy)
+    function auditTrailTicket($ticketId, $oldStatus, $newStatus, $changedBy, $pending_reason = null, $root_cause = null, $solution = null, $preventive_action = null)
     {
         $this->load->model('TicketStatusHistoriesModel');
         $this->TicketStatusHistoriesModel->insert([
@@ -159,6 +159,10 @@ class MY_Controller extends CI_Controller
             'new_status' => $newStatus,
             'changed_by' => $changedBy,
             'changed_at' => date('Y-m-d H:i:s'),
+            'pending_reason' => $pending_reason,
+            'root_cause' => $root_cause,
+            'solution' => $solution,
+            'preventive_action' => $preventive_action
         ]);
     }
 
@@ -170,7 +174,7 @@ class MY_Controller extends CI_Controller
 
     protected function POST($name)
     {
-        return $this->input->post($name);
+        return $this->input->post($name, true);
     }
     protected function dump($var)
     {
@@ -245,9 +249,10 @@ class MY_Controller extends CI_Controller
     }
     protected function flashmsg($msg, $type = 'success', $name = 'msg')
     {
-        return $this->session->set_flashdata($name, '<div class="alert alert-' . $type . ' alert-dismissable" role="alert">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    ' . $msg . '
-                  </div>');
+        $status = ($type == 'success') ? 'Berhasil' : 'Gagal';
+        return $this->session->set_flashdata($name, '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">
+    <strong>' . $status . '!</strong> ' . $msg . '
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>');
     }
 }

@@ -8,6 +8,8 @@ $route['create-ticket'] = 'backend/TicketController/create';
 $route['cancel-ticket'] = 'backend/TicketController/in_active_ticket';
 $route['edit-ticket'] = 'backend/TicketController/detail';
 $route['ticket'] = 'backend/TicketController/index';
+$route['ticket/comment'] = 'backend/TicketController/comment';
+$route['update-ticket-status'] = 'backend/TicketController/update_ticket_status';
 // // Routing Admin
 // $route['admin']                     = 'backend/AdminController/index';
 // $route['admin/create']              = 'backend/AdminController/create';

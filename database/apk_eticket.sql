@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 21, 2026 at 04:00 PM
+-- Generation Time: May 23, 2026 at 05:56 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `apk_eticket`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_attachments`
+--
+
+CREATE TABLE `comment_attachments` (
+  `id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `attachment` varchar(256) NOT NULL,
+  `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_deleted` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -131,8 +145,7 @@ INSERT INTO `status` (`id`, `status_name`, `is_active`) VALUES
 (1, 'Menunggu Support', 1),
 (2, 'Dalam Proses', 1),
 (3, 'Pending', 1),
-(4, 'Solved', 1),
-(5, 'Closed', 1);
+(4, 'Solved', 1);
 
 -- --------------------------------------------------------
 
@@ -158,10 +171,8 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `category`, `module_id`, `ticket_number`, `title`, `description`, `status_id`, `reported_by`, `reported_at`, `is_active`) VALUES
-(13, 'Software', 1, 'TID-2-0001', 'Error nominal tidak sesuai', 'Sistem gagal menyimpan data transaksi karena koneksi database timeout.\nError terjadi saat proses insert ke tabel transaksi.', 1, 1, '2026-05-21 07:59:24', 1),
-(15, 'Software', 2, 'TID-2-0003', 'Error tidak bisa login', 'TES', 2, 2, '2026-05-21 08:47:54', 1),
-(16, 'Software', 3, 'TID-2-0004', 'Error perkara lama muncul lagi', 'TES', 1, 1, '2026-05-21 08:49:40', 0),
-(19, 'Software', 1, 'TID-1-0007', 'Tidak generate report', 'Tidak dapat melakukan generate report kauangan bulanan priode april 2026', 1, 1, '2026-05-21 13:50:41', 1);
+(23, 'Software', 1, 'TID-1-0011', 'User tidak dapat login ke aplikasi Kinstaker menggunakan akun aktif. Muncul pesan \"Invalid Credentials\" meskipun username dan password sudah benar.', 'User melaporkan gagal login sejak pagi hari setelah reset password.\nSudah mencoba:\n- Clear cache browser\n- Ganti browser\n- Reset password ulang\n\nNamun login tetap gagal.', 4, 1, '2026-05-23 15:32:42', 1),
+(24, 'Software', 1, 'TID-1-0012', 'Gagal Validasi Laporan Keuangan Satker', 'Tidak dapat melakukan validasi laporan keuangan hanya loading saja tidak ada pesan error. Ketika di refresh statusnya masih belum di validasi.', 1, 2, '2026-05-23 15:50:54', 1);
 
 -- --------------------------------------------------------
 
@@ -173,7 +184,7 @@ CREATE TABLE `ticket_assignees` (
   `id` int(11) NOT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `petugas_id` int(11) DEFAULT NULL,
-  `assignment_method` enum('Auto','Manual') NOT NULL DEFAULT 'Auto',
+  `assignment_method` enum('Regular','Token') NOT NULL DEFAULT 'Regular',
   `assigned_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -182,10 +193,8 @@ CREATE TABLE `ticket_assignees` (
 --
 
 INSERT INTO `ticket_assignees` (`id`, `ticket_id`, `petugas_id`, `assignment_method`, `assigned_at`) VALUES
-(1, 13, 1, 'Auto', '2026-05-21 07:59:44'),
-(2, 15, 2, 'Auto', '2026-05-21 08:47:54'),
-(3, 16, 1, 'Auto', '2026-05-21 08:49:40'),
-(6, 19, 2, 'Auto', '2026-05-21 13:50:41');
+(10, 23, 1, 'Regular', '2026-05-23 15:32:42'),
+(11, 24, 2, 'Regular', '2026-05-23 15:50:54');
 
 -- --------------------------------------------------------
 
@@ -207,13 +216,8 @@ CREATE TABLE `ticket_attachment` (
 --
 
 INSERT INTO `ticket_attachment` (`id`, `ticket_id`, `attachment`, `created_at`, `is_deleted`, `deleted_at`) VALUES
-(1, 13, 'upload/attachment/13/image1.png', '2026-05-21 13:00:13', 0, NULL),
-(2, 13, 'upload/attachment/13/image1.png', '2026-05-21 13:00:13', 0, NULL),
-(3, 13, 'upload/attachment/13/image1.png', '2026-05-21 13:00:13', 0, NULL),
-(11, 19, 'M5IUX2J5JA12JSY12W5R.pdf', '2026-05-21 13:50:41', 0, NULL),
-(12, 19, 'C3XOIMPFQKVGDAM5HHD9.png', '2026-05-21 13:50:41', 0, NULL),
-(13, 19, 'X7TRTZGOSI148TW3XYTC.pdf', '2026-05-21 13:50:41', 0, NULL),
-(14, 19, 'OJIVI8VDDN9VESWY7S6P.png', '2026-05-21 13:50:41', 0, NULL);
+(17, 23, 'PAQUCDKFKZB0HOMCEPC3.png', '2026-05-23 15:32:42', 0, NULL),
+(18, 24, 'FNEEJ6GJS5XIJ448PLW5.png', '2026-05-23 15:50:54', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -225,12 +229,21 @@ CREATE TABLE `ticket_comments` (
   `id` int(11) NOT NULL,
   `ticket_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `photo` varchar(256) DEFAULT NULL,
   `comment` text NOT NULL,
-  `is_internal` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `is_deleted` int(11) NOT NULL DEFAULT 0,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ticket_comments`
+--
+
+INSERT INTO `ticket_comments` (`id`, `ticket_id`, `name`, `photo`, `comment`, `created_at`, `is_deleted`, `deleted_at`) VALUES
+(8, 23, 'Muhammad Yusron Hartoyo', NULL, 'Pending karena tidak menginformasikan informasi username akun. Mohon berikan username dari user untuk kita cek di database', '2026-05-23 15:38:27', 0, NULL),
+(9, 23, 'Cean Feby Validia, S.H', 'upload/reporter/cean.jpg', 'Usernamenya : ceanfeby', '2026-05-23 15:38:54', 0, NULL),
+(10, 23, 'Muhammad Yusron Hartoyo', NULL, 'Root Cause: Data password hash pada database tidak sinkron setelah proses reset password.<br>Solution: Melakukan regenerate password hash dan clear session cache user.\r\nUser berhasil login kembali setelah reset ulang.<br>Preventive Action: Menambahkan validasi password hash consistency setelah proses reset password pada sistem.', '2026-05-23 15:47:10', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -248,7 +261,7 @@ CREATE TABLE `ticket_counter` (
 --
 
 INSERT INTO `ticket_counter` (`id`, `last_number`) VALUES
-(12, 7);
+(12, 12);
 
 -- --------------------------------------------------------
 
@@ -276,6 +289,10 @@ CREATE TABLE `ticket_status_histories` (
   `ticket_id` int(11) NOT NULL,
   `old_status` varchar(20) DEFAULT NULL,
   `new_status` varchar(20) NOT NULL,
+  `pending_reason` text DEFAULT NULL,
+  `root_cause` text DEFAULT NULL,
+  `solution` text DEFAULT NULL,
+  `preventive_action` text DEFAULT NULL,
   `changed_by` int(11) DEFAULT NULL,
   `changed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -284,18 +301,23 @@ CREATE TABLE `ticket_status_histories` (
 -- Dumping data for table `ticket_status_histories`
 --
 
-INSERT INTO `ticket_status_histories` (`id`, `ticket_id`, `old_status`, `new_status`, `changed_by`, `changed_at`) VALUES
-(1, 10, '0', '1', 1, '2026-05-21 02:36:52'),
-(2, 11, '0', '1', 1, '2026-05-21 06:38:01'),
-(3, 12, '0', '1', 1, '2026-05-21 07:40:02'),
-(4, 13, '0', '1', 1, '2026-05-21 07:59:24'),
-(5, 15, '0', '1', 1, '2026-05-21 08:47:54'),
-(6, 16, '0', '1', 1, '2026-05-21 08:49:40'),
-(9, 19, '0', '1', 1, '2026-05-21 13:50:41');
+INSERT INTO `ticket_status_histories` (`id`, `ticket_id`, `old_status`, `new_status`, `pending_reason`, `root_cause`, `solution`, `preventive_action`, `changed_by`, `changed_at`) VALUES
+(19, 23, '0', '1', NULL, NULL, NULL, NULL, 1, '2026-05-23 15:32:42'),
+(20, 23, '1', '2', '', '', '', '', 1, '2026-05-23 15:35:13'),
+(21, 23, '2', '3', 'Pending karena tidak menginformasikan informasi username akun. Mohon berikan username dari user untuk kita cek di database', '', '', '', 1, '2026-05-23 15:38:27'),
+(22, 23, '3', '4', 'Pending karena tidak menginformasikan informasi username akun. Mohon berikan username dari user untuk kita cek di database', 'Data password hash pada database tidak sinkron setelah proses reset password.', 'Melakukan regenerate password hash dan clear session cache user.\r\nUser berhasil login kembali setelah reset ulang.', 'Menambahkan validasi password hash consistency setelah proses reset password pada sistem.', 1, '2026-05-23 15:47:10'),
+(23, 24, '0', '1', NULL, NULL, NULL, NULL, 1, '2026-05-23 15:50:54');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comment_attachments`
+--
+ALTER TABLE `comment_attachments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comment_attachments_ibfk_1` (`comment_id`);
 
 --
 -- Indexes for table `module`
@@ -388,6 +410,12 @@ ALTER TABLE `ticket_status_histories`
 --
 
 --
+-- AUTO_INCREMENT for table `comment_attachments`
+--
+ALTER TABLE `comment_attachments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
@@ -421,25 +449,25 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `ticket_assignees`
 --
 ALTER TABLE `ticket_assignees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ticket_attachment`
 --
 ALTER TABLE `ticket_attachment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `ticket_comments`
 --
 ALTER TABLE `ticket_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ticket_counter`
@@ -457,11 +485,17 @@ ALTER TABLE `ticket_ratings`
 -- AUTO_INCREMENT for table `ticket_status_histories`
 --
 ALTER TABLE `ticket_status_histories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comment_attachments`
+--
+ALTER TABLE `comment_attachments`
+  ADD CONSTRAINT `comment_attachments_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `ticket_comments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `petugas`
@@ -513,7 +547,7 @@ ALTER TABLE `ticket_ratings`
 -- Constraints for table `ticket_status_histories`
 --
 ALTER TABLE `ticket_status_histories`
-  ADD CONSTRAINT `ticket_status_histories_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`);
+  ADD CONSTRAINT `ticket_status_histories_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
